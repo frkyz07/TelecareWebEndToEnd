@@ -1,4 +1,4 @@
-package src.test.Academy;
+package tests;
 
 import java.io.IOException;
 
