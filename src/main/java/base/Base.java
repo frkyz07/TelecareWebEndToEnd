@@ -19,16 +19,9 @@ public class Base {
 
 	public WebDriver driver;
 
-	public WebDriver initializeDriver() throws IOException {
+	public  WebDriver initializeDriver() throws IOException {
 
-		//prop = new Properties();
-		// System.getProperties("user.dir")
-		//FileInputStream fis = new FileInputStream(
-		//System.getProperty("user.dir") + "\\src\\main\\resources\\data.properties");
 
-		//prop.load(fis);
-		// mvn test -Dbrowser=chrome
-		//String browserName = System.getProperty("browser");
 		String browserName = ConfigReader.getProperty("browser");
 		System.out.println(browserName);
 		ChromeOptions options = new ChromeOptions();;
@@ -74,3 +67,11 @@ public class Base {
 	}
 
 }
+//prop = new Properties();
+// System.getProperties("user.dir")
+//FileInputStream fis = new FileInputStream(
+//System.getProperty("user.dir") + "\\src\\main\\resources\\data.properties");
+
+//prop.load(fis);
+// mvn test -Dbrowser=chrome
+//String browserName = System.getProperty("browser");

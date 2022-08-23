@@ -13,9 +13,9 @@ import java.util.Locale;
 
 public class Helper {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
-    public ConfigReader configReader;
+    WebDriver driver;
+    ConfigReader configReader;
+    Faker faker = new Faker();
 
 
 
@@ -46,7 +46,7 @@ public class Helper {
     public String checkHeader() {
         return configReader.getPropertyAssertion("assertionHeader");
     }
-    Faker faker = new Faker();
+
 
     public String name(){return faker.name().firstName();}
     public String surname(){return faker.name().lastName();}

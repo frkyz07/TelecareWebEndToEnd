@@ -2,13 +2,12 @@ package tests;
 
 import java.io.IOException;
 
-import base.Base;
 import base.Helper;
 import org.openqa.selenium.*;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.CreateAccountPage;
@@ -16,12 +15,7 @@ import pageObjects.HomePage;
 
 
 @SuppressWarnings("unused")
-public class CreateAccountTest extends Base {
-	public WebDriver driver;
-	public Helper hl = new Helper(null);
-	HomePage homePage;
-	CreateAccountPage createAccountPage;
-	Helper helper;
+public class CreateAccountTest extends BaseTest {
 /*
 	FakeValuesService fakeValuesService = new FakeValuesService(
 			new Locale("en-GB"), new RandomService());
@@ -40,41 +34,40 @@ public class CreateAccountTest extends Base {
 	String practiceCity = faker.address().city();
 	String practiceZipCode = faker.address().zipCode(); */
 
-	@BeforeTest
-	public void initialize() throws IOException {
-		driver = initializeDriver();
-		driver.get(hl.url());
-		Assert.assertEquals(driver.getCurrentUrl(), hl.url());
+	@BeforeClass
+	public void setDriver() throws IOException {
+
+		homePage = new HomePage(driver);
+		createAccountPage = new CreateAccountPage(driver);
 	}
 
 	@Test
 	public void HomePageVerification() throws InterruptedException {
 
-		HomePage hp = new HomePage(driver);
-		CreateAccountPage cap = new CreateAccountPage(driver);
-		hp.creteAccountPage().click();
 
-		hl.inPutter(cap.nameField(),hl.name());
-		hl.inPutter(cap.surnameField(),hl.surname());
-		hl.inPutter(cap.email(),hl.email());
-		hl.inPutter(cap.phoneNumber(),hl.phoneNumber());
-		hl.inPutter(cap.password(),hl.password());
-		hl.inPutter(cap.confirmPassword(),hl.password());
-		cap.nextButton().click();
+		homePage.creteAccountPage().click();
 
-		hl.inPutter(cap.praticeName(),hl.name());
-		hl.inPutter(cap.practicePhoneNumber(),hl.phoneNumber());
-		hl.inPutter(cap.practiceAddress(),hl.practiceAddress());
-		hl.inPutter(cap.practiceCity(),hl.practiceCity());
-		hl.inPutter(cap.practiceZipCode(),hl.practiceZipCode());
-		cap.nextButton().click();
+		helper.inPutter(createAccountPage.nameField(),helper.name());
+		helper.inPutter(createAccountPage.surnameField(),helper.surname());
+		helper.inPutter(createAccountPage.email(),helper.email());
+		helper.inPutter(createAccountPage.phoneNumber(),helper.phoneNumber());
+		helper.inPutter(createAccountPage.password(),helper.password());
+		helper.inPutter(createAccountPage.confirmPassword(),helper.password());
+		createAccountPage.nextButton().click();
+
+		helper.inPutter(createAccountPage.praticeName(),helper.name());
+		helper.inPutter(createAccountPage.practicePhoneNumber(),helper.phoneNumber());
+		helper.inPutter(createAccountPage.practiceAddress(),helper.practiceAddress());
+		helper.inPutter(createAccountPage.practiceCity(),helper.practiceCity());
+		helper.inPutter(createAccountPage.practiceZipCode(),helper.practiceZipCode());
+		createAccountPage.nextButton().click();
 
 		//hl.inPutter(cap.invitationEmail(),hl.email());
 		//cap.invitationEmail().sendKeys(Keys.ENTER);
-		cap.createAccountButton().click();
+		createAccountPage.createAccountButton().click();
 		Thread.sleep(3000);
 		String urlAfter = driver.getCurrentUrl();
-		Assert.assertEquals(hl.url(),urlAfter);
+		Assert.assertEquals(helper.url(),urlAfter);
 	}
 
 	@AfterTest(enabled = false)
