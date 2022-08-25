@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public class CreateAccountPage {
     public WebDriver driver;
-    CreateAccountPage createAccountPage;
 
     By nameField = By.xpath("//div/input[@name='name']");
     By surnameField = By.xpath("//div/input[@name='surname']");
@@ -22,8 +21,6 @@ public class CreateAccountPage {
     By practiceZipCode = By.xpath("//div/input[@name='practiceZipCode']");
     By invitationEmail = By.xpath("//div/input[@name='invitationEmail']");
     By createAccountButton = By.xpath("//button[text()='Create account']");
-
-
 
     public CreateAccountPage(WebDriver driver) {
         this.driver = driver;

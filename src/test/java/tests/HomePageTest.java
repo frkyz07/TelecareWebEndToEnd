@@ -2,35 +2,36 @@ package tests;
 
 import java.io.IOException;
 
-import base.Base;
-import base.Helper;
-import org.openqa.selenium.*;
-
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import pageObjects.CreateAccountPage;
+
+import pageObjects.DashboardPage;
 import pageObjects.HomePage;
 public class HomePageTest extends BaseTest {
 
-
     @BeforeClass
     public void setDriver() throws IOException {
-
         homePage = new HomePage(driver);
+        dashboardPage = new DashboardPage(driver);
     }
-    @Test
+    @Test(priority = 1)
     public void webSiteBaseTest(){
         helper.inPutter(homePage.email(), helper.emailData());
         helper.inPutter(homePage.password(),helper.passwordData());
         homePage.signInClick().click();
     }
+    @Test(priority = 2)
+    public void checkClinicId(){
+        Assert.assertEquals(helper.assertionReader("assertionClinicId"),dashboardPage.clinicId().getText());
+    }
 
 
-    @AfterTest()
+
+
+
+
+    @AfterClass()
     public void destroyIt() {
         driver.quit();}
 }

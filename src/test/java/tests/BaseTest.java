@@ -5,6 +5,7 @@ import base.Helper;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import pageObjects.CreateAccountPage;
+import pageObjects.DashboardPage;
 import pageObjects.HomePage;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class BaseTest extends Base {
     WebDriver driver;
     HomePage homePage;
     CreateAccountPage createAccountPage;
+    DashboardPage dashboardPage;
     Helper helper = new Helper(null);
 
 
@@ -24,7 +26,7 @@ public class BaseTest extends Base {
     public WebDriver initialize() throws IOException {
 
         driver = initializeDriver();
-        driver.get(helper.url());
+        driver.get(helper.conReader("url"));
         return this.driver;
 
     }

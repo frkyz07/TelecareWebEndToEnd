@@ -17,8 +17,6 @@ public class Helper {
     ConfigReader configReader;
     Faker faker = new Faker();
 
-
-
     public Helper(WebDriver driver) {
         this.driver = driver;
     }
@@ -30,23 +28,26 @@ public class Helper {
     FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-GB"), new RandomService());
 
+    public String conReader(String properties){
+        return configReader.getProperty(properties);
+    }
+    public String assertionReader(String properties){
+        return  configReader.getPropertyAssertion(properties);
+    }
     public String url(){
-        return configReader.getProperty("url");
+        return conReader("url");
     }
     public String emailData(){
-        return configReader.getProperty("email");
+        return conReader("email");
     }
     public String passwordData(){
-        return configReader.getProperty("password");
+        return conReader("password");
     }
 
-    public String checkUrl(){
-        return configReader.getPropertyAssertion("assertionUrl");
-    }
+    public String checkUrl(){return conReader("assertionUrl");}
     public String checkHeader() {
-        return configReader.getPropertyAssertion("assertionHeader");
+        return conReader("assertionHeader");
     }
-
 
     public String name(){return faker.name().firstName();}
     public String surname(){return faker.name().lastName();}
