@@ -1,13 +1,12 @@
 package tests;
 
 import java.io.IOException;
-
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-
 import pageObjects.DashboardPage;
 import pageObjects.HomePage;
+
 public class HomePageTest extends BaseTest {
 
     @BeforeClass
@@ -25,8 +24,10 @@ public class HomePageTest extends BaseTest {
     public void checkClinicId(){
         Assert.assertEquals(helper.assertionReader("assertionClinicId"),dashboardPage.clinicId().getText());
     }
-
-
+    @Test(priority = 3)
+    public void checkClinicName(){
+        Assert.assertEquals(helper.assertionReader("assertionClinicName"),dashboardPage.clinicName().getText());
+    }
 
 
 
