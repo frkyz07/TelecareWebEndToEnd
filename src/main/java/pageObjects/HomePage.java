@@ -10,8 +10,6 @@ public class HomePage {
 
 	WebDriver driver;
 
-	HomePage homePage;
-
 	By creteAccountPage = By.xpath("//div/a[text()='Create an account']");
 	By email = By.xpath("//div/input[@name='email']");
 	By eMailWarning = By.xpath("//div[@data-testid='login-email-input-test']/p");
