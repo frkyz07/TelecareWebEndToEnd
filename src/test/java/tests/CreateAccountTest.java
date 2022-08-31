@@ -3,6 +3,7 @@ package tests;
 import java.io.IOException;
 
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -43,8 +44,8 @@ public class CreateAccountTest extends BaseTest {
 		helper.inPutter(createAccountPage.practiceZipCode(),helper.practiceZipCode());
 		createAccountPage.nextButton().click();
 
-		//hl.inPutter(cap.invitationEmail(),hl.email());
-		//cap.invitationEmail().sendKeys(Keys.ENTER);
+		helper.inPutter(createAccountPage.invitationEmail(),helper.email());
+		createAccountPage.invitationEmail().sendKeys(Keys.ENTER);
 
 		createAccountPage.createAccountButton().click();
 		Thread.sleep(3000);
