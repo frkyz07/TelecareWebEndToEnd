@@ -2,8 +2,6 @@ package tests;
 
 import java.io.IOException;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -22,7 +20,7 @@ public class HomePageTest extends BaseTest {
     }
     @Test(priority = 1)
     public void webSiteBaseTest(){
-        BaseTest.login(helper.emailData(),helper.passwordData());
+        homePage.login(helper.emailData(),helper.passwordData());
     }
     @Test(priority = 2)
     public void checkClinicId(){
@@ -34,11 +32,11 @@ public class HomePageTest extends BaseTest {
     }
     @Test(priority = 4)
     public void searchTest() throws InterruptedException {
-        Assert.assertEquals(BaseTest.dashboardSearch(helper.searchName()),profilePage.profileName().getText());
+        Assert.assertEquals(dashboardPage.dashboardSearch(helper.searchName()),profilePage.profileName().getText());
         Assert.assertTrue(profilePage.profileName().getText().contains(helper.searchName()));
     }
 
-    @AfterClass(enabled = false)
+    @AfterClass
     public void destroyIt() {
         driver.quit();}
 }

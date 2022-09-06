@@ -17,7 +17,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class Base {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 	public  WebDriver initializeDriver() throws IOException {
 

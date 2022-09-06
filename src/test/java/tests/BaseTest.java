@@ -2,9 +2,12 @@ package tests;
 
 import base.Base;
 import base.Helper;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import pageObjects.CreateAccountPage;
 import pageObjects.DashboardPage;
 import pageObjects.HomePage;
@@ -16,38 +19,21 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest extends Base {
 
-    static WebDriver driver;
-    static HomePage homePage;
-    static WebDriverWait wait;
-    CreateAccountPage createAccountPage;
-    static DashboardPage dashboardPage;
-    ProfilePage profilePage;
-    static Helper helper;
+  //  public static WebDriver driver;
+    public static HomePage homePage;
+    public static CreateAccountPage createAccountPage;
+    public static DashboardPage dashboardPage;
+    public static ProfilePage profilePage;
+    public static Helper helper = new Helper(driver);
 
 
-
-    @BeforeClass
+    @BeforeTest
     public WebDriver initialize() throws IOException {
-        driver = initializeDriver();
-        helper = new Helper(driver);
+        this.driver = initializeDriver();
+       //
         driver.get(helper.conReader("url"));
         return this.driver;
 
     }
-    public static void login(String email, String password){
-        helper.inPutter(homePage.email(), email);
-        helper.inPutter(homePage.password(),password);
-        homePage.signInClick().click();
-    }
-    public static String dashboardSearch(String search) throws InterruptedException {
-        dashboardPage.searchField().sendKeys(search);
-        String firstRowRealName = dashboardPage.firstRowName().getText();
-        helper.waitElement(dashboardPage.firstRowName);
-        dashboardPage.firstRowName().click();
-        return firstRowRealName;
-
-    }
-
-
 
 }

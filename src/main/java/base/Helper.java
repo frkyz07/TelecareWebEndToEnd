@@ -24,7 +24,7 @@ public class Helper{
 
     public Helper(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(20));
+        //this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(20));
     }
 
     public static void scroller(WebDriver driver){
